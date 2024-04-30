@@ -140,7 +140,7 @@ class _InteriorDirectorySelectionPageState
               Spacer(),
               Center(
                 child: Text(
-                  'Modula',
+                  'Carvo X',
                   style: GoogleFonts.mulish(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,

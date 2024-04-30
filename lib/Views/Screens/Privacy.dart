@@ -124,7 +124,7 @@ class _PrivacyState extends State<Privacy> {
               children: [
                 TextSpan(
                   text:
-                      'We value your privacy and are committed to safeguarding your personal information when you use our Car 3D Modeling Application Modula.\n\n',
+                      'We value your privacy and are committed to safeguarding your personal information when you use our Car 3D Modeling Application Carvo X.\n\n',
                   style: GoogleFonts.mulish(fontWeight: FontWeight.bold),
                 ),
                 TextSpan(

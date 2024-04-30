@@ -124,7 +124,7 @@ class _ProfileState extends State<Profile> {
               ),
               Center(
                 child: Text(
-                  'Modula',
+                  'Carvo X',
                   style: GoogleFonts.mulish(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,

@@ -45,7 +45,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             ),
             Center(
               child: Text(
-                'Modula',
+                'Carvo X',
                 style: GoogleFonts.mulish(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w500,

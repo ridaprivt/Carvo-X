@@ -74,7 +74,7 @@ class _Complete360ViewPageState extends State<Complete360ViewPage> {
               Spacer(),
               Center(
                 child: Text(
-                  'Modula',
+                  'Carvo X',
                   style: GoogleFonts.mulish(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
