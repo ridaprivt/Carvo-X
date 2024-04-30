@@ -2322,7 +2322,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     height: 2.h,
                   ),
                   Text(
-                      'Step into the world of \nImmersive Car Visuals:\nCapture,Customize,\nand Showcase in 360°',
+                      '''Step into the world of Immersive Car Visuals:
+Capture,Customize,and Showcase in 360°
+
+With a simple video recording of the vehicle's interior and exterior, Carvo X's amazing algorithm processes the video to create a visually appealing and interactive 3D model representation
+''',
                       style: GoogleFonts.mulish(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w300,
@@ -2330,7 +2334,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         color: Colors.white,
                       )),
                   SizedBox(
-                    height: 5.h,
+                    height: 2.h,
                   ),
                   MaterialButton(
                     onPressed: () {

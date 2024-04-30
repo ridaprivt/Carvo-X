@@ -41,7 +41,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [0.01, 0.1, 0.7],
+                  stops: [0.01, 0.13, 0.7],
                   colors: [
                     Colors.black,
                     Color.fromARGB(255, 65, 3, 94),
@@ -103,6 +103,23 @@ class _MyDrawerState extends State<MyDrawer> {
                     ),
                     onTap: () {
                       Get.offAll(DashboardScreen());
+                    },
+                  ),
+                  ListTile(
+                    leading: Image.asset(
+                      'assets/ic2.png',
+                      height: 20.sp,
+                    ),
+                    title: Text(
+                      'Profile',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 17.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () {
+                      Get.offAll(Profile());
                     },
                   ),
                   ListTile(

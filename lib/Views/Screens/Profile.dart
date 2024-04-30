@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:kf_drawer/kf_drawer.dart';
 import 'package:modula/Model/widgets/AppBar.dart';
 import 'package:modula/Views/Drawer/Drawer.dart';
+import 'package:modula/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -26,75 +27,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  String imageurl = '';
-
-  String _accountName = '';
-  String _accountEmail = '';
-  String _phone = '';
-  final ProfileController profileController = Get.put(ProfileController());
-
-  Future<void> get_Image() async {
-    ImagePicker imagePicker = ImagePicker();
-    XFile? file;
-
-    try {
-      file = await imagePicker.pickImage(source: ImageSource.gallery);
-    } catch (e) {
-      print('Error picking an image: $e');
-      return;
-    }
-
-    if (file != null) {
-      profileController.setImage(file); // Use the controller to set the image
-    } else {
-      print('No image selected.');
-      return;
-    }
-
-    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
-
-    Reference referenceRoot = FirebaseStorage.instance.ref();
-    Reference referenceDirImages = referenceRoot.child('images');
-
-    Reference referenceImageToUpload = referenceDirImages.child(uniqueFileName);
-
-    try {
-      await referenceImageToUpload.putFile(File(file.path));
-      imageurl = await referenceImageToUpload.getDownloadURL();
-      print('Image uploaded successfully. URL: $imageurl');
-    } catch (e) {
-      print('Error uploading image: $e');
-    }
-  }
-
-  Future<void> _fetchUserDetails() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      final userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .get();
-
-      if (userDoc.exists) {
-        final userData = userDoc.data()!;
-        setState(() {
-          _accountName = userData['username'];
-          _accountEmail = userData['email'];
-          _phone = userData['mobileNo'];
-        });
-      }
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      _fetchUserDetails();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,29 +65,17 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-              Center(
-                child: Obx(() {
-                  final image = profileController.image.value;
-                  if (image != null) {
-                    return Container(
-                      width: 4.h,
-                      height: 4.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: FileImage(File(image!.path)),
-                        ),
-                      ),
-                    );
-                  } else {
-                    return CircleAvatar(
-                      radius: 2.h,
-                      child: Image.asset("assets/pfp.png"),
-                    );
-                  }
-                }),
-              ),
+              Container(
+                width: 4.h,
+                height: 4.h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(userPhotoUrl),
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -186,69 +106,24 @@ class _ProfileState extends State<Profile> {
                     radius: 40.sp,
                     backgroundColor: Color.fromARGB(28, 255, 255, 255),
                     child: CircleAvatar(
-                        radius: 35.sp,
-                        backgroundColor: Color.fromARGB(37, 255, 255, 255),
-                        child: CircleAvatar(
-                          radius: 30.sp,
-                          backgroundColor: Color.fromARGB(52, 255, 255, 255),
-                        )),
+                      radius: 37.sp,
+                      backgroundColor: Color.fromARGB(37, 255, 255, 255),
+                    ),
                   )),
-                  Center(child: Obx(() {
-                    final image = profileController.image.value;
-                    if (image != null) {
-                      return Container(
-                        width: 9.h,
-                        height: 9.h,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: FileImage(File(image!.path)),
-                          ),
-                        ),
-                      );
-                    } else {
-                      return CircleAvatar(
-                        radius: 4.5.h,
-                        child: Image.asset(
-                          "assets/pfp.png",
-                        ),
-                      );
-                    }
-                  })),
-                ],
-              ),
-              SizedBox(height: 3.h),
-              MaterialButton(
-                onPressed: get_Image,
-                child: Center(
-                  child: Container(
-                    width: 40.w,
-                    height: 6.h,
-                    alignment: Alignment.center,
+                  Container(
+                    width: 47.sp,
+                    height: 47.sp,
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(153, 52, 1, 52),
-                        border: GradientBoxBorder(
-                          gradient: LinearGradient(colors: [
-                            Color(0xff41035E),
-                            Color(0xff003D78),
-                            Color(0xff003D78)
-                          ]),
-                          width: 6.sp,
-                        ),
-                        borderRadius: BorderRadius.circular(13.sp)),
-                    child: Text(
-                      'Edit Profile Picture',
-                      style: GoogleFonts.mulish(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(userPhotoUrl),
                       ),
                     ),
-                  ),
-                ),
+                  )
+                ],
               ),
-              SizedBox(height: 8.h),
+              SizedBox(height: 6.h),
               Center(
                 child: Container(
                   width: 60.w,
@@ -261,16 +136,16 @@ class _ProfileState extends State<Profile> {
                             Text(
                               'Email Address:',
                               style: GoogleFonts.mulish(
-                                fontSize: 15.sp,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
                               ),
                             ),
                             SizedBox(height: 1.h),
                             Text(
-                              _accountEmail,
+                              email,
                               style: GoogleFonts.mulish(
-                                fontSize: 15.sp,
+                                fontSize: 17.sp,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
@@ -285,48 +160,21 @@ class _ProfileState extends State<Profile> {
                         )),
                         SizedBox(height: 2.h),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Username:',
                               style: GoogleFonts.mulish(
-                                fontSize: 15.sp,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
                               ),
                             ),
                             SizedBox(height: 1.h),
                             Text(
-                              _accountName,
+                              username,
                               style: GoogleFonts.mulish(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                            child: Divider(
-                          color: const Color.fromARGB(130, 255, 255, 255),
-                          thickness: 3.sp,
-                          height: 3.h,
-                        )),
-                        SizedBox(height: 2.h),
-                        Column(
-                          children: [
-                            Text(
-                              'Phone Number:',
-                              style: GoogleFonts.mulish(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(height: 1.h),
-                            Text(
-                              _phone,
-                              style: GoogleFonts.mulish(
-                                fontSize: 15.sp,
+                                fontSize: 17.sp,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
