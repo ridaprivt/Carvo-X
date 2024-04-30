@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "266646810573",
+    "project_id": "carvo-x",
+    "storage_bucket": "carvo-x.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266646810573:android:08cab7c47b3f7933bade84",
+        "android_client_info": {
+          "package_name": "com.carvo.x"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoIJ3q2UWSvAUmxmSGXmURyCfV2bcdd0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
