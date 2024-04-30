@@ -40,7 +40,7 @@ Carvo X consists of the following pages:
 
 To get started with Modula, follow these steps:
 
-1. Clone the repository to your local machine using the command `git clone https://github.com/sherryzia/Modula.git`.
+1. Clone the repository to your local machine using the command `git clone https://github.com/ridaprivt/Carvo-X.git`.
 2. Open the directory in your preferred IDE and run the command `flutter pub get` to install the required dependencies.
 3. Run the `main.dart` file on either the VM or a physical device to launch the application.
 
