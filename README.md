@@ -1,10 +1,10 @@
-# Modula: 3D Vehicle Model Extraction Application
+# Carvo X: 3D Vehicle Model Extraction Application
 
 
 
 ## Introduction
 
-Welcome to Modula, an innovative application that enables users to extract 3D models for any vehicle's interior and exterior. With a simple video recording of the vehicle's interior and exterior, Modula's amazing algorithm processes the video to create a visually appealing and interactive 3D model representation.
+Welcome to Carvo X, an innovative application that enables users to extract 3D models for any vehicle's interior and exterior. With a simple video recording of the vehicle's interior and exterior, Modula's amazing algorithm processes the video to create a visually appealing and interactive 3D model representation.
 
 ## Features
 
@@ -26,7 +26,7 @@ Welcome to Modula, an innovative application that enables users to extract 3D mo
 
 ## Pages
 
-Modula consists of the following pages:
+Carvo X consists of the following pages:
 
 - :house: **Home:** The home page serves as the main screen, providing quick access to essential features and functionalities.
 
@@ -53,4 +53,4 @@ To get started with Modula, follow these steps:
 
 ## Collaboration
 
-Contributions and collaboration are highly encouraged to enhance Modula's capabilities and user experience. Feel free to submit pull requests with new features, bug fixes, and improvements. Together, we can make Modula an even more powerful and intuitive tool for 3D vehicle model extraction!
+Contributions and collaboration are highly encouraged to enhance Carvo X's capabilities and user experience. Feel free to submit pull requests with new features, bug fixes, and improvements. Together, we can make Carvo X an even more powerful and intuitive tool for 3D vehicle model extraction!
