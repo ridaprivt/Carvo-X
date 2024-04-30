@@ -8,7 +8,7 @@ Welcome to Carvo X, an innovative application that enables users to extract 3D m
 
 ## Features
 
-- :video_camera: **Video Input:** Modula offers two methods for video input:
+- :video_camera: **Video Input:** Carvo X offers two methods for video input:
     - Video recording on runtime, allowing users to capture the vehicle's interior and exterior in real-time.
     - Import videos from the local storage of the mobile phone.
 
@@ -16,7 +16,7 @@ Welcome to Carvo X, an innovative application that enables users to extract 3D m
     - Locally on the user's device, providing the option to create and manage a personal collection of models in a specific directory.
     - On the cloud, enabling users to access their models from any device with an internet connection.
 
-- :busts_in_silhouette: **User Signup and Login:** Users can sign up and log in to Modula using their preferred method, including Google login/signup.
+- :busts_in_silhouette: **User Signup and Login:** Users can sign up and log in to Carvo X using login/signup.
 
 - :bar_chart: **View Recent Models:** Users can view their most recently generated 3D models for easy access.
 
@@ -34,11 +34,11 @@ Carvo X consists of the following pages:
 
 - :lock: **Privacy Statement:** This page outlines the privacy policies and terms of use for Modula, ensuring transparency and compliance with regulations.
 
-- :scroll: **Terms and Conditions:** Users can review the terms and conditions governing the use of Modula in this section.
+- :scroll: **Terms and Conditions:** Users can review the terms and conditions governing the use of Carvo X in this section.
 
 ## Getting Started
 
-To get started with Modula, follow these steps:
+To get started with Carvo X, follow these steps:
 
 1. Clone the repository to your local machine using the command `git clone https://github.com/ridaprivt/Carvo-X.git`.
 2. Open the directory in your preferred IDE and run the command `flutter pub get` to install the required dependencies.
