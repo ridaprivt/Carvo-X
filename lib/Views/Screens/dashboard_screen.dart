@@ -2254,47 +2254,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Recents',
-                        style: GoogleFonts.mulish(
-                          fontSize: 19.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
-                      ),
-                      MaterialButton(
-                        onPressed: () => _showAllDirectories(),
-                        child: Container(
-                          width: 25.w,
-                          height: 5.h,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(172, 52, 1, 52),
-                              border: GradientBoxBorder(
-                                gradient: LinearGradient(colors: [
-                                  Color(0xff41035E),
-                                  Color(0xff003D78),
-                                  Color(0xff003D78)
-                                ]),
-                                width: 5.sp,
-                              ),
-                              borderRadius: BorderRadius.circular(13.sp)),
-                          child: Text(
-                            'View All',
-                            style: GoogleFonts.mulish(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 1.5.h),
                   Container(
                     height: 30.h,
                     child: ClipRRect(

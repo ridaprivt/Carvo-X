@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modula/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:modula/Controller/Controllers.dart';
@@ -149,29 +150,17 @@ class _InteriorDirectorySelectionPageState
                 ),
               ),
               SizedBox(width: 30.w),
-              Center(
-                child: Obx(() {
-                  final image = profileController.image.value;
-                  if (image != null) {
-                    return Container(
-                      width: 4.h,
-                      height: 4.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: FileImage(File(image!.path)),
-                        ),
-                      ),
-                    );
-                  } else {
-                    return CircleAvatar(
-                      radius: 2.h,
-                      child: Image.asset("assets/pfp.png"),
-                    );
-                  }
-                }),
-              ),
+              Container(
+                width: 4.h,
+                height: 4.h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(userPhotoUrl),
+                  ),
+                ),
+              )
             ],
           ),
         ),
