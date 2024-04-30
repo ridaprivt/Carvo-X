@@ -6,6 +6,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart';
 import 'package:modula/Controller/Controllers.dart';
 
+String email = '';
+String username = '';
+String userPhotoUrl = '';
+
 void main() async {
   final String outputPath = '/storage/emulated/0/Download/.FrameExtracted/';
 

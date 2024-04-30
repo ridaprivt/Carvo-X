@@ -227,6 +227,7 @@ class _SignInState extends State<SignIn> {
           await prefs.setBool('isLoggedIn', true);
           await prefs.setString('userID', user.uid);
           await prefs.setString('userEmail', user.email ?? '');
+
           Get.snackbar(
             'Success',
             'Sign In Successful',
@@ -234,7 +235,7 @@ class _SignInState extends State<SignIn> {
             colorText: Colors.white,
           );
         } else {
-          if ((userDoc['userName'] == null || userDoc['userName'].isEmpty) ||
+          if ((userDoc['username'] == null || userDoc['username'].isEmpty) ||
               (userDoc['userPhotoUrl'] == null ||
                   userDoc['userPhotoUrl'].isEmpty)) {
             Get.to(AppleInfo());

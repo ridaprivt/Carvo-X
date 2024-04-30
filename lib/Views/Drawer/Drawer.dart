@@ -7,11 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modula/Controller/Controllers.dart';
 import 'package:get/get.dart';
-import 'package:modula/Views/Screens/Privacy.dart';
+import 'package:modula/Views/Auth/signin_screen.dart';
 import 'package:modula/Views/Screens/Profile.dart';
+import 'package:modula/Views/Screens/Privacy.dart';
 import 'package:modula/Views/Screens/TermsCondition.dart';
 import 'package:modula/Views/Screens/dashboard_screen.dart';
+import 'package:modula/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -21,33 +24,7 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  String _accountName = '';
-  String _accountEmail = '';
   final ProfileController profileController = Get.put(ProfileController());
-
-  void init() {
-    super.initState();
-    final user = FirebaseAuth.instance.currentUser;
-    _fetchUserDetails();
-  }
-
-  Future<void> _fetchUserDetails() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      final userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .get();
-
-      if (userDoc.exists) {
-        final userData = userDoc.data()!;
-        setState(() {
-          _accountName = userData['username'];
-          _accountEmail = userData['email'];
-        });
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +35,13 @@ class _MyDrawerState extends State<MyDrawer> {
         padding: const EdgeInsets.all(0),
         children: [
           Container(
-            height: 100.h,
+            height: 120.h,
             child: DrawerHeader(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [0.01, 0.15, 0.9],
+                  stops: [0.01, 0.1, 0.7],
                   colors: [
                     Colors.black,
                     Color.fromARGB(255, 65, 3, 94),
@@ -75,50 +52,40 @@ class _MyDrawerState extends State<MyDrawer> {
               padding: EdgeInsets.symmetric(vertical: 15.sp), //BoxDecoration
               child: Column(
                 children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 36.5.sp,
-                        backgroundColor: Color.fromARGB(28, 255, 255, 255),
-                        child: CircleAvatar(
-                            radius: 33.sp,
-                            backgroundColor: Color.fromARGB(37, 255, 255, 255),
-                            child: CircleAvatar(
-                              radius: 29.sp,
-                              backgroundColor:
-                                  Color.fromARGB(52, 255, 255, 255),
-                            )),
+                  Stack(alignment: Alignment.center, children: [
+                    CircleAvatar(
+                      radius: 36.5.sp,
+                      backgroundColor: Color.fromARGB(28, 255, 255, 255),
+                      child: CircleAvatar(
+                        radius: 33.sp,
+                        backgroundColor: Color.fromARGB(37, 255, 255, 255),
                       ),
-                      Obx(() {
-                        final image = profileController.image.value;
-                        if (image != null) {
-                          return Container(
-                            width: 9.h,
-                            height: 9.h,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: FileImage(File(image!.path)),
-                              ),
-                            ),
-                          );
-                        } else {
-                          return CircleAvatar(
-                            radius: 4.5.h,
-                            child: Image.asset("assets/pfp.png"),
-                          );
-                        }
-                      }),
-                    ],
-                  ),
-                  SizedBox(height: 2.h),
-                  Text(_accountName,
+                    ),
+                    Container(
+                      width: 40.sp,
+                      height: 40.sp,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(userPhotoUrl),
+                        ),
+                      ),
+                    )
+                  ]),
+                  SizedBox(height: 1.h),
+                  Text(username,
                       style: GoogleFonts.mulish(
                           textStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 18.sp,
+                              fontWeight: FontWeight.w400))),
+                  SizedBox(height: 0.3.h),
+                  Text(email,
+                      style: GoogleFonts.mulish(
+                          textStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w700))),
                   SizedBox(height: 3.h),
                   ListTile(
@@ -185,7 +152,13 @@ class _MyDrawerState extends State<MyDrawer> {
                         color: Colors.white,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      await prefs.clear();
+                      await FirebaseAuth.instance.signOut();
+                      Get.offAll(SignIn());
+                    },
                   ),
                 ],
               ),

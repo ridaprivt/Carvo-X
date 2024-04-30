@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 //import 'package:kf_drawer/kf_drawer.dart';
 import 'package:modula/Model/widgets/AppBar.dart';
+import 'package:modula/Views/Drawer/Drawer.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,6 +31,7 @@ class _TermsConditionsState extends State<TermsConditions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
         elevation: 1,
         automaticallyImplyLeading: false,
@@ -40,14 +42,17 @@ class _TermsConditionsState extends State<TermsConditions> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: 5.w,
-                child: MaterialButton(
-                  minWidth: 5.h,
-                  padding: EdgeInsets.all(0),
-                  onPressed: () {},
-                  //widget.onMenuPressed,
-                  child: Image.asset("assets/menu.png"),
+              Builder(
+                builder: (context) => SizedBox(
+                  width: 5.w,
+                  child: MaterialButton(
+                    minWidth: 5.h,
+                    padding: EdgeInsets.all(0),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    child: Image.asset("assets/menu.png"),
+                  ),
                 ),
               ),
               Center(

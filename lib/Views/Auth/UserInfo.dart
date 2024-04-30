@@ -94,6 +94,9 @@ class _AppleInfoState extends State<AppleInfo> {
         Get.offAll(DashboardScreen());
       }
     }
+    setState(() {
+      post = false;
+    });
   }
 
   @override

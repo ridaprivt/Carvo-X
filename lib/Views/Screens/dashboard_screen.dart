@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:modula/Model/widgets/AppBar.dart';
 import 'package:modula/Views/Drawer/Drawer.dart';
 import 'package:modula/Views/Screens/ViewModels.dart';
+import 'package:modula/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,6 +23,7 @@ import 'dart:typed_data';
 import 'package:modula/Controller/Controllers.dart';
 import 'package:get/get.dart';
 import 'package:modula/Views/Screens/ViewAll.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'CameraOverlay.dart';
 import 'package:camera/camera.dart';
 import 'package:http/http.dart' as http;
@@ -44,9 +46,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     'assets/car4.jpeg',
     'assets/car5.jpeg',
   ];
-  String _accountName = '';
-  String _accountEmail = '';
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final ProfileController profileController = Get.put(ProfileController());
   File? _selectedVideo;
@@ -76,29 +75,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   void initState() {
     super.initState();
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      _fetchUserDetails();
-    }
-    _accountName = _getUserName() ?? "";
+    fetchUserData();
   }
 
-  Future<void> _fetchUserDetails() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      final userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .get();
+  Future<void> fetchUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    String userID = prefs.getString('userID') ?? '';
 
-      if (userDoc.exists) {
-        final userData = userDoc.data()!;
-        setState(() {
-          _accountName = userData['username'];
-          _accountEmail = userData['email'];
-          // _userRole = userData['role'];
-        });
-      }
+    if (userID.isEmpty) {
+      print('User ID not found');
+      return;
+    }
+
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    DocumentSnapshot userDoc =
+        await firestore.collection('users').doc(userID).get();
+
+    if (userDoc.exists) {
+      Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
+      setState(() {
+        email = userData['email'] ?? "No email provided";
+        username = userData['username'] ?? "No username provided";
+        userPhotoUrl = userData['userPhotoUrl'] ?? "No photo URL provided";
+      });
+
+      print('Email: $email');
+      print('Username: $username');
+      print('Photo URL: $userPhotoUrl');
+    } else {
+      print('User not found');
     }
   }
 
@@ -2212,29 +2217,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
                   ),
-                  Center(
-                    child: Obx(() {
-                      final image = profileController.image.value;
-                      if (image != null) {
-                        return Container(
-                          width: 4.h,
-                          height: 4.h,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: FileImage(File(image!.path)),
-                            ),
-                          ),
-                        );
-                      } else {
-                        return CircleAvatar(
-                          radius: 2.h,
-                          child: Image.asset("assets/pfp.png"),
-                        );
-                      }
-                    }),
-                  ),
+                  Container(
+                    width: 4.h,
+                    height: 4.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(userPhotoUrl),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -2359,7 +2352,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   SizedBox(
                     height: 0.5.h,
                   ),
-                  Text(_accountName + "!",
+                  Text(username + "!",
                       style: GoogleFonts.mulish(
                         fontSize: 19.sp,
                         fontWeight: FontWeight.w500,
