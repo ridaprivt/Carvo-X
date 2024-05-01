@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:kf_drawer/kf_drawer.dart';
 import 'package:modula/Model/widgets/AppBar.dart';
 import 'package:modula/Views/Drawer/Drawer.dart';
+import 'package:modula/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -66,29 +67,17 @@ class _TermsConditionsState extends State<TermsConditions> {
                   ),
                 ),
               ),
-              Center(
-                child: Obx(() {
-                  final image = profileController.image.value;
-                  if (image != null) {
-                    return Container(
-                      width: 4.h,
-                      height: 4.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: FileImage(File(image!.path)),
-                        ),
-                      ),
-                    );
-                  } else {
-                    return CircleAvatar(
-                      radius: 2.h,
-                      child: Image.asset("assets/pfp.png"),
-                    );
-                  }
-                }),
-              ),
+              Container(
+                width: 4.h,
+                height: 4.h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(userPhotoUrl),
+                  ),
+                ),
+              )
             ],
           ),
         ),

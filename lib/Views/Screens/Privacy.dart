@@ -1,22 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
-//import 'package:kf_drawer/kf_drawer.dart';
-import 'package:modula/Model/widgets/AppBar.dart';
 import 'package:modula/Views/Drawer/Drawer.dart';
+import 'package:modula/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:gradient_borders/gradient_borders.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart' as path;
 import 'dart:io';
-import 'package:modula/Model/widgets/AppBar.dart';
 import 'package:modula/Controller/Controllers.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 class Privacy extends StatefulWidget {
   const Privacy({super.key});
@@ -66,29 +56,17 @@ class _PrivacyState extends State<Privacy> {
                   ),
                 ),
               ),
-              Center(
-                child: Obx(() {
-                  final image = profileController.image.value;
-                  if (image != null) {
-                    return Container(
-                      width: 4.h,
-                      height: 4.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: FileImage(File(image!.path)),
-                        ),
-                      ),
-                    );
-                  } else {
-                    return CircleAvatar(
-                      radius: 2.h,
-                      child: Image.asset("assets/pfp.png"),
-                    );
-                  }
-                }),
-              ),
+              Container(
+                width: 4.h,
+                height: 4.h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(userPhotoUrl),
+                  ),
+                ),
+              )
             ],
           ),
         ),

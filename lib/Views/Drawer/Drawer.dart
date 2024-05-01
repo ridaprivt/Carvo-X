@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modula/Controller/Controllers.dart';
 import 'package:get/get.dart';
 import 'package:modula/Views/Auth/signin_screen.dart';
+import 'package:modula/Views/Screens/AutoAssist.dart';
 import 'package:modula/Views/Screens/Profile.dart';
 import 'package:modula/Views/Screens/Privacy.dart';
 import 'package:modula/Views/Screens/TermsCondition.dart';
@@ -118,9 +119,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         color: Colors.white,
                       ),
                     ),
-                    onTap: () {
-                      Get.offAll(Profile());
-                    },
+                    onTap: () {},
                   ),
                   ListTile(
                     leading: Image.asset(
@@ -154,6 +153,23 @@ class _MyDrawerState extends State<MyDrawer> {
                     ),
                     onTap: () {
                       Get.offAll(TermsConditions());
+                    },
+                  ),
+                  ListTile(
+                    leading: Image.asset(
+                      'assets/ai.png',
+                      height: 20.sp,
+                    ),
+                    title: Text(
+                      'Auto Asssist',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 17.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onTap: () {
+                      Get.offAll(AutoAssist());
                     },
                   ),
                   ListTile(
