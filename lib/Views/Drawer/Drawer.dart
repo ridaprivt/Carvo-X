@@ -161,7 +161,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       height: 20.sp,
                     ),
                     title: Text(
-                      'Auto Asssist',
+                      'Auto Assist',
                       style: GoogleFonts.montserrat(
                         fontSize: 17.sp,
                         fontWeight: FontWeight.w500,
