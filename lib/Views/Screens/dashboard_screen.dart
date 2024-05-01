@@ -1,10 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:modula/Model/widgets/AppBar.dart';
 import 'package:modula/Views/Drawer/Drawer.dart';
-import 'package:modula/Views/Screens/ViewModels.dart';
 import 'package:modula/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
@@ -19,16 +16,11 @@ import 'package:ffmpeg_kit_flutter/return_code.dart';
 import 'package:modula/Controller/Controllers.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'dart:typed_data';
-import 'package:modula/Controller/Controllers.dart';
-import 'package:get/get.dart';
 import 'package:modula/Views/Screens/ViewAll.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'CameraOverlay.dart';
 import 'package:camera/camera.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'dart:io';
 
 class DashboardScreen extends StatefulWidget {
   final outputPath = Get.find<OutputPathController>().outputPath;
@@ -46,7 +38,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     'assets/car4.jpeg',
     'assets/car5.jpeg',
   ];
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   final ProfileController profileController = Get.put(ProfileController());
   File? _selectedVideo;
   String? _directoryName;
@@ -57,21 +48,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<File?> _selectedImages = List.generate(11, (_) => null);
   final ImagePicker _imagePicker = ImagePicker();
-
-  String? _getUserName() {
-    final user = _auth.currentUser;
-    if (user != null) {
-      // Check if the user is signed in with Google
-      if (user.providerData
-          .any((userInfo) => userInfo.providerId == 'google.com')) {
-        return user.displayName;
-      } else {
-        // If not signed in with Google, assume it's email/password authentication
-        return user.email;
-      }
-    }
-    return null;
-  }
 
   void initState() {
     super.initState();
@@ -343,7 +319,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           TextField(
-            controller: textEditingController,
+            controller: _fpsController,
             keyboardType: TextInputType.number,
             style: GoogleFonts.mulish(
               fontSize: 14.sp,
@@ -443,7 +419,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           TextField(
-            controller: textEditingController,
+            controller: _fpsController,
             keyboardType: TextInputType.number,
             style: GoogleFonts.mulish(
               fontSize: 14.sp,
@@ -2180,7 +2156,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('getuseruser: ${_getUserName()}');
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -2321,8 +2296,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   SizedBox(
                     height: 2.h,
                   ),
-                  Text(
-                      '''Step into the world of Immersive Car Visuals:
+                  Text('''Step into the world of Immersive Car Visuals:
 Capture,Customize,and Showcase in 360°
 
 With a simple video recording of the vehicle's interior and exterior, Carvo X's amazing algorithm processes the video to create a visually appealing and interactive 3D model representation
