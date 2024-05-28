@@ -59,6 +59,7 @@ class _CameraOverlayScreenState extends State<CameraOverlayScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         elevation: 1,
         toolbarHeight: 7.h,

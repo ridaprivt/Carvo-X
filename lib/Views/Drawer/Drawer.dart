@@ -119,7 +119,9 @@ class _MyDrawerState extends State<MyDrawer> {
                         color: Colors.white,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(Profile());
+                    },
                   ),
                   ListTile(
                     leading: Image.asset(
