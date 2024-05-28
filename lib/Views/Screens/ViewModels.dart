@@ -298,8 +298,8 @@ class _InteriorDirectorySelectionPageState
                     ),
                   ),
                   Container(
-                    width: 40.w,
                     height: 5.h,
+                    width: 90.w,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                         color: Color.fromARGB(172, 52, 1, 52),

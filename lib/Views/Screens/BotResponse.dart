@@ -89,20 +89,24 @@ class _BotResponseState extends State<BotResponse> {
             ],
           ),
         ),
-        child: Container(
-          margin: EdgeInsets.only(top: 4.h),
-          padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 18.sp),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.sp),
-              border: Border.all(color: Color(0xffD0DBEA))),
-          child: Text(
-            widget.ans,
-            style: GoogleFonts.mulish(
-              fontWeight: FontWeight.w500,
-              fontSize: 16.sp,
-              color: Colors.white,
+        child: ListView(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 4.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 18.sp),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.sp),
+                  border: Border.all(color: Color(0xffD0DBEA))),
+              child: Text(
+                widget.ans,
+                style: GoogleFonts.mulish(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.sp,
+                  color: Colors.white,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

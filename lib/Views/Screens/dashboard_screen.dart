@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:modula/Views/Drawer/Drawer.dart';
@@ -298,6 +300,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final textEditingController = TextEditingController();
 
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
@@ -398,6 +401,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final textEditingController = TextEditingController();
 
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
@@ -498,6 +502,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final textEditingController = TextEditingController();
 
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
@@ -583,6 +588,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final textEditingController = TextEditingController();
 
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
@@ -757,6 +763,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final directoryExists = await _checkDirectoryExists(outputPath);
     if (directoryExists) {
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
           shape: RoundedRectangleBorder(
@@ -875,6 +882,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       await _updateDirectoriesList();
 
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
           shape: RoundedRectangleBorder(
@@ -901,6 +909,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
           actions: [
+            MaterialButton(
+              onPressed: () {
+                Navigator.pop(context);
+                setState(() {
+                  _isExtractingFrames = false;
+                });
+              },
+              child: Container(
+                width: 15.w,
+                height: 4.h,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(153, 52, 1, 52),
+                    border: GradientBoxBorder(
+                      gradient: LinearGradient(colors: [
+                        Color(0xff41035E),
+                        Color(0xff003D78),
+                        Color(0xff003D78)
+                      ]),
+                      width: 6.sp,
+                    ),
+                    borderRadius: BorderRadius.circular(13.sp)),
+                child: Text(
+                  'Close',
+                  style: GoogleFonts.mulish(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 1.w),
             MaterialButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -936,6 +977,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       );
     } else if (ReturnCode.isCancel(returnCode)) {
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
           title: Text(
@@ -1049,6 +1091,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Future<void> _extractFrames2() async {
     if (_selectedVideo == null) {
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
           shape: RoundedRectangleBorder(
@@ -1110,6 +1153,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     if (_directoryName == null || _directoryName!.isEmpty) {
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
           shape: RoundedRectangleBorder(
@@ -1178,6 +1222,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final directoryExists = await _checkDirectoryExists(outputPath);
     if (directoryExists) {
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
           shape: RoundedRectangleBorder(
@@ -1294,6 +1339,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       await _updateDirectoriesList();
 
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
           shape: RoundedRectangleBorder(
@@ -1320,6 +1366,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
           actions: [
+            MaterialButton(
+              onPressed: () {
+                Navigator.pop(context);
+                setState(() {
+                  _isExtractingFrames = false;
+                });
+              },
+              child: Container(
+                width: 15.w,
+                height: 4.h,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(153, 52, 1, 52),
+                    border: GradientBoxBorder(
+                      gradient: LinearGradient(colors: [
+                        Color(0xff41035E),
+                        Color(0xff003D78),
+                        Color(0xff003D78)
+                      ]),
+                      width: 6.sp,
+                    ),
+                    borderRadius: BorderRadius.circular(13.sp)),
+                child: Text(
+                  'Close',
+                  style: GoogleFonts.mulish(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 1.w),
             MaterialButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -1406,6 +1485,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       );
     } else {
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
           shape: RoundedRectangleBorder(
@@ -1468,6 +1548,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 //interior//
   Future<void> _generate_interior() async {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
@@ -1556,6 +1637,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Future<void> _showImageSourceDialog() async {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
@@ -1653,6 +1735,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       await capturedImage.copy(interiorPath);
 
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
           shape: RoundedRectangleBorder(
@@ -1717,6 +1800,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Future<void> _generate_parts() async {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
@@ -1820,6 +1904,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Future<void> _interior_pictures() async {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
@@ -1844,7 +1929,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             return Container(
               width: 95.w,
               child: ListView.builder(
-                itemCount: 11,
+                itemCount: 5,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   bool isSelected = _selectedImages[index] != null;
@@ -2093,8 +2178,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
       final url =
           "https://remove-background-image2.p.rapidapi.com/remove-background";
       final headers = {
-        "X-RapidAPI-Key": "81155407b8msh52748ada5fa659dp122257jsne4d9decc4036",
-        "X-RapidAPI-Host": "remove-background-image2.p.rapidapi.com"
+        'x-rapidapi-key': "0bf02d6592mshaa82ea2efc198fdp10243djsnbd551426d991",
+        'x-rapidapi-host': "remove-background-image2.p.rapidapi.com",
+        'Content-Type':
+            "multipart/form-data; boundary=---011000010111000001101001"
       };
 
       var request = http.MultipartRequest('POST', Uri.parse(url));
@@ -2110,6 +2197,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         var status = data['status'];
 
         if (status) {
+          print('-----------------------------------------------------');
           var image = data['image'];
           var imageBytes = base64.decode(image);
           await selectedImage.writeAsBytes(imageBytes);
@@ -2495,27 +2583,26 @@ With a simple video recording of the vehicle's interior and exterior, Carvo X's 
   String getCarPartName(int index) {
     switch (index) {
       case 0:
-        return 'Bumper';
-      case 1:
         return 'Bonnet';
-      case 2:
+
+      case 1:
         return 'Right Head Light';
-      case 3:
+      case 2:
         return 'Left Head Light';
-      case 4:
+      case 3:
         return 'Front Tyre Left';
-      case 5:
+      case 4:
         return 'Front Tyre Right';
-      case 6:
-        return 'Back Tyre Left';
-      case 7:
-        return 'Back Tyre Right';
-      case 8:
-        return 'Left Tail Light';
-      case 9:
-        return 'Right Tail Light';
-      case 10:
-        return 'Trunk';
+      // case 6:
+      //   return 'Back Tyre Left';
+      // case 7:
+      //   return 'Back Tyre Right';
+      // case 8:
+      //   return 'Left Tail Light';
+      // case 9:
+      //   return 'Right Tail Light';
+      // case 10:
+      //   return 'Trunk';
       default:
         return '';
     }

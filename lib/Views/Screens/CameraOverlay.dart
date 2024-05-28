@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:modula/Views/Screens/ViewModels.dart';
+import 'package:modula/main.dart';
 import 'dart:io';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:path_provider/path_provider.dart';
@@ -57,6 +59,43 @@ class _CameraOverlayScreenState extends State<CameraOverlayScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 1,
+        toolbarHeight: 7.h,
+        automaticallyImplyLeading: true,
+        backgroundColor: Colors.black,
+        title: Padding(
+          padding: EdgeInsets.fromLTRB(4.w, 0, 4.w, 0),
+          child: Row(
+            children: [
+              Spacer(),
+              Center(
+                child: Text(
+                  'Carvo X',
+                  style: GoogleFonts.mulish(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.5,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(width: 30.w),
+              Container(
+                width: 4.h,
+                height: 4.h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(userPhotoUrl),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
         builder: (context, snapshot) {

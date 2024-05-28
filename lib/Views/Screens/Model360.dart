@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:imageview360/imageview360.dart';
 import 'package:modula/Views/Screens/Hotspots.dart';
 import 'package:modula/Views/Screens/ModelParts.dart';
+import 'package:modula/Views/Screens/dashboard_screen.dart';
 import 'package:modula/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -152,6 +153,40 @@ class _Complete360ViewPageState extends State<Complete360ViewPage> {
                       bottom: 5.h,
                       right: 3.w,
                       child: Column(children: [
+                        MaterialButton(
+                          onPressed: () {
+                            Get.offAll(DashboardScreen());
+                          },
+                          child: Container(
+                            height: 8.h,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.01, 0.2, 0.5],
+                                colors: [
+                                  Colors.black,
+                                  Color.fromARGB(255, 65, 3, 94),
+                                  Colors.black,
+                                ],
+                              ),
+                            ),
+                            child: Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.all(13.sp),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.home,
+                                  size: 25.sp,
+                                  color: Colors.black,
+                                )),
+                          ),
+                        ),
+                        SizedBox(height: 57.h),
                         MaterialButton(
                           onPressed: () {
                             print(widget.directoryPath);

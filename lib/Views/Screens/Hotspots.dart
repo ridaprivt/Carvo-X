@@ -101,13 +101,13 @@ class _Hotspots extends State<Hotspots> {
                     backgroundDecoration: BoxDecoration(color: Colors.black),
                   ),
                 ),
-                Center(
-                  child: Image.asset(
-                    'assets/front.png',
-                    height: 38.h,
-                    color: Colors.white,
-                  ),
-                ),
+                // Center(
+                //   child: Image.asset(
+                //     'assets/front.png',
+                //     height: 38.h,
+                //     color: Colors.white,
+                //   ),
+                // ),
                 Center(
                   child: Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.10),
@@ -121,7 +121,7 @@ class _Hotspots extends State<Hotspots> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             hotspot('Left Head Light'),
-                            SizedBox(width: screenWidth * 0.33),
+                            SizedBox(width: screenWidth * 0.37),
                             hotspot('Right Head Light'),
                           ],
                         ),
@@ -131,7 +131,7 @@ class _Hotspots extends State<Hotspots> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             hotspot('Front Tyre Left'),
-                            SizedBox(width: screenWidth * 0.37),
+                            SizedBox(width: screenWidth * 0.40),
                             hotspot('Front Tyre Right'),
                           ],
                         )
